@@ -5,10 +5,6 @@ import {
   BookOpen, TrendingUp, Download, FileText, Video, Image,
   ThumbsUp, ThumbsDown, Facebook, Twitter, Instagram, Youtube,
   Send, Home, Folder, Settings, BarChart2, Leaf, RefreshCw,
-<<<<<<< HEAD
-  CircleCheckBig, CircleAlert, XCircle, Key, UserCheck, UserX, Edit, Trash, Plus, Minus, Search, Lock, X, Upload, Inbox,
-  Pencil, Info, File,
-=======
   CircleCheckBig, CircleAlert, XCircle, Key, UserCheck, UserX, Edit, Trash, Plus, Minus, Search, Lock, X, Upload, Inbox, CheckCircle,
   Eye, EyeOff, Tag, PieChart, Pencil,
   Trophy, Crown, Medal, Star, Hash, Flame,
@@ -16,7 +12,6 @@ import {
   ChevronsDown, Heart, Code, Globe, ArrowRight,
   Info, HelpCircle, LoaderCircle,
   Mail, AlertCircle
->>>>>>> 74423d3780f9dcc6d4a55fcf9998d45dfc82f890
 } from 'lucide-angular';
 
 export const LUCIDE_ICONS = { 
@@ -26,11 +21,6 @@ export const LUCIDE_ICONS = {
   BookOpen, TrendingUp, Download, FileText, Video, Image,
   ThumbsUp, ThumbsDown, Facebook, Twitter, Instagram, Youtube,
   Send, Home, Folder, Settings, BarChart2, Leaf, RefreshCw,
-<<<<<<< HEAD
-  CircleCheckBig, CircleAlert, XCircle, Key, UserCheck, UserX, Edit, Trash, Plus, Minus, Search, Lock, X, Upload, Inbox,
-  Pencil, Info, File,
-};
-=======
   CircleCheckBig, CircleAlert, XCircle, Key, UserCheck, UserX, Edit, Trash, Plus, Minus, Search, Lock, X, Upload, Inbox, CheckCircle,
   Eye, EyeOff,
   MessageCircle, Pencil,
@@ -50,4 +40,3 @@ export const LUCIDE_ICONS = {
   'Tag': Tag,
   'PieChart': PieChart
 });
->>>>>>> 74423d3780f9dcc6d4a55fcf9998d45dfc82f890
