@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 import { ApiService } from '../../../services/api.service';
 
@@ -39,6 +39,8 @@ export class EcoPuntosAdmin implements OnInit {
   deleteTarget: Ecopoint | null = null;
 
   ecoForm!: FormGroup;
+  neighborhoods: { neighborhoodId: number; name: string }[] = [];
+  isLoadingNeighborhoods = false;
 
   residueTypeOptions = ['ORGANICO', 'RECICLABLE', 'ESPECIAL', 'PELIGROSO', 'ELECTRONICO'];
 
@@ -46,18 +48,45 @@ export class EcoPuntosAdmin implements OnInit {
 
   ngOnInit(): void {
     this.ecoForm = this.fb.group({
-      name: ['', Validators.required],
-      address: ['', Validators.required],
-      latitude: ['', Validators.required],
-      longitude: ['', Validators.required],
-      description: [''],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      address: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
+      latitude: ['', [Validators.required, Validators.min(-90), Validators.max(90)]],
+      longitude: ['', [Validators.required, Validators.min(-180), Validators.max(180)]],
+      description: ['', Validators.maxLength(500)],
       status: ['ACTIVO', Validators.required],
-      residueTypes: [[], Validators.required],
+      residueTypes: [[], this.minOneSelected],
       neighborhoodId: ['', Validators.required],
       openingTime: ['08:00', Validators.required],
       closingTime: ['18:00', Validators.required]
-    });
+    }, { validators: this.timeRangeValidator });
+    this.loadNeighborhoods();
     this.loadEcopoints();
+  }
+
+  private minOneSelected(control: AbstractControl): ValidationErrors | null {
+    return Array.isArray(control.value) && control.value.length > 0 ? null : { required: true };
+  }
+
+  private timeRangeValidator(group: AbstractControl): ValidationErrors | null {
+    const open = group.get('openingTime')?.value;
+    const close = group.get('closingTime')?.value;
+    return open && close && open >= close ? { invalidTimeRange: true } : null;
+  }
+
+  showError(field: string, error: string): boolean {
+    const c = this.ecoForm.get(field);
+    return !!c && c.touched && c.hasError(error);
+  }
+
+  loadNeighborhoods(): void {
+    this.isLoadingNeighborhoods = true;
+    this.api.getNeighboordHoods(1, 1).subscribe({
+      next: (res: any) => {
+        this.neighborhoods = Array.isArray(res) ? res : (res?.content || []);
+        this.isLoadingNeighborhoods = false;
+      },
+      error: (err) => { console.error('Error cargando barrios', err); this.isLoadingNeighborhoods = false; }
+    });
   }
 
   loadEcopoints(): void {

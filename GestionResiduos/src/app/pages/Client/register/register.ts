@@ -25,6 +25,11 @@ export interface GoogleRegisterRequest {
   phoneNumber: string;
 }
 
+interface Neighborhood {
+  neighborhoodId: number;
+  name: string;
+}
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -43,6 +48,8 @@ export class Register implements OnInit, AfterViewInit, OnDestroy {
   showErrorModal: boolean = false;
   googleUser: any = null;
   showCompleteForm: boolean = false;
+  neighborhoods: Neighborhood[] = [];
+  isLoadingNeighborhoods = false;
 
   constructor(
     private router: Router,
@@ -79,7 +86,9 @@ export class Register implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.loadNeighborhoods();
+  }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -199,6 +208,20 @@ export class Register implements OnInit, AfterViewInit, OnDestroy {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmPassword')?.value;
     return pass === confirm ? null : { passwordsMismatch: true };
+  }
+
+  loadNeighborhoods(): void {
+    this.isLoadingNeighborhoods = true;
+    this.api.getNeighboordHoods(1, 1).subscribe({
+      next: (response: any) => {
+        this.neighborhoods = Array.isArray(response) ? response : (response?.content || []);
+        this.isLoadingNeighborhoods = false;
+      },
+      error: (error) => {
+        console.error('Error al obtener los barrios:', error);
+        this.isLoadingNeighborhoods = false;
+      }
+    });
   }
 
   get f() { return this.form.controls; }

@@ -50,7 +50,9 @@ export class UsuariosAdmin implements OnInit {
     this.error = '';
     this.api.adminListUsers().subscribe({
       next: (data) => {
-        this.users = Array.isArray(data) ? data : [];
+        const myEmail = (localStorage.getItem('userEmail') || '').toLowerCase();
+        const list: User[] = Array.isArray(data) ? data : [];
+        this.users = list.filter(u => (u.email || '').toLowerCase() !== myEmail);
         this.isLoading = false;
       },
       error: (err) => {

@@ -113,6 +113,12 @@ export class Login implements OnInit, AfterViewInit, OnDestroy {
         this.loadingService.hide();
         console.error('Error login Google:', error);
 
+        if (error.status === 403) {
+          this.errorMessage = error.error?.message || 'La cuenta se encuentra desactivada. Contacta al administrador.';
+          this.showErrorModal = true;
+          return;
+        }
+
         if (error.status === 404 || error.status === 500) {
           this.router.navigate(['/register']);
           return;
@@ -161,6 +167,8 @@ export class Login implements OnInit, AfterViewInit, OnDestroy {
         console.error('Error en el login', error);
         if (error.status === 401) {
           this.errorMessage = 'Correo o contraseña incorrectos.';
+        } else if (error.status === 403) {
+          this.errorMessage = error.error?.message || 'La cuenta se encuentra desactivada. Contacta al administrador.';
         } else {
           this.errorMessage = 'Ocurrió un error al iniciar sesión. Intenta de nuevo.';
         }
