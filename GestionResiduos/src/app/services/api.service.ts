@@ -26,6 +26,10 @@ export class ApiService {
   registerUser(payload: any): Observable<any> {
     return this.http.post('/auth/register/user', payload);
   }
+   // -- NeighboordHoods --
+  getNeighboordHoods(cityId: any = 1, districtId: any = 1): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/geography/neighborhoods`, { params: { cityId, districtId } });
+  }
 
   registerGoogle(payload: any): Observable<any> {
     return this.http.post('/auth/register/google', payload);
@@ -274,4 +278,22 @@ export class ApiService {
   addReply(commentId: number, texto: string): Observable<any> {
     return this.http.post(`${environment.apiUrl}/forum/comments/${commentId}/replies`, { texto }, { headers: this.authHeaders().set('Content-Type', 'application/json') });
   }
+
+   // ─── HU31: Ranking ───
+  getRanking(limit: number = 50): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/ranking`, {
+      params: { limit: limit.toString() }
+    });
+  }
+
+  // ─── Logros (Achievements) ───
+  getMyAchievements(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/achievements/me`, { headers: this.authHeaders() });
+  }
+
+  getMyUnlockedAchievements(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/achievements/me/unlocked`, { headers: this.authHeaders() });
+  }
+
+ 
 }

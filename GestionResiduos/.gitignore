@@ -43,3 +43,9 @@ Thumbs.db
 
 # Environment
 .env
+.env.*
+!.env.example
+
+# Generados por scripts/set-env.mjs
+/src/enviroment/enviroment.ts
+/src/index.html

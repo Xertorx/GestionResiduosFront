@@ -1,4 +1,3 @@
-
 import {
   Trash2, ChevronLeft, ChevronRight, LogOut, Menu, Bell, ChevronDown, ChevronUp,
   User, Shield, MessageSquare, MessageCircle, LogIn, Chrome, UserPlus,
@@ -7,7 +6,12 @@ import {
   ThumbsUp, ThumbsDown, Facebook, Twitter, Instagram, Youtube,
   Send, Home, Folder, Settings, BarChart2, Leaf, RefreshCw,
   CircleCheckBig, CircleAlert, XCircle, Key, UserCheck, UserX, Edit, Trash, Plus, Minus, Search, Lock, X, Upload, Inbox, CheckCircle,
-  Eye, EyeOff, Tag, PieChart, Pencil
+  Eye, EyeOff, Tag, PieChart, Pencil,
+  Trophy, Crown, Medal, Star, Hash, Flame,
+  Target, Sparkles, Gift,
+  ChevronsDown, Heart, Code, Globe, ArrowRight,
+  Info, HelpCircle, LoaderCircle,
+  Mail, AlertCircle
 } from 'lucide-angular';
 
 export const LUCIDE_ICONS = { 
@@ -19,7 +23,12 @@ export const LUCIDE_ICONS = {
   Send, Home, Folder, Settings, BarChart2, Leaf, RefreshCw,
   CircleCheckBig, CircleAlert, XCircle, Key, UserCheck, UserX, Edit, Trash, Plus, Minus, Search, Lock, X, Upload, Inbox, CheckCircle,
   Eye, EyeOff,
-  MessageCircle,Pencil
+  MessageCircle, Pencil,
+  Trophy, Crown, Medal, Star, Hash, Flame,
+  Target, Sparkles, Gift,
+  ChevronsDown, Heart, Code, Globe, ArrowRight,
+  Info, HelpCircle, LoaderCircle,
+  Mail, AlertCircle
 };
 
 // also expose kebab-case keys used in templates
