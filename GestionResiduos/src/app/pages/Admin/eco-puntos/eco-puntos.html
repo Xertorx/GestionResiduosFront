@@ -87,36 +87,36 @@
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
             <input formControlName="name" type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Nombre del ecopunto">
+            @if (showError('name', 'required')) { <p class="text-red-500 text-xs mt-1">El nombre es obligatorio.</p> }
+            @if (showError('name', 'minlength')) { <p class="text-red-500 text-xs mt-1">Mínimo 3 caracteres.</p> }
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
             <input formControlName="address" type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Dirección">
+            @if (showError('address', 'required')) { <p class="text-red-500 text-xs mt-1">La dirección es obligatoria.</p> }
+            @if (showError('address', 'minlength')) { <p class="text-red-500 text-xs mt-1">Mínimo 5 caracteres.</p> }
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Latitud</label>
             <input formControlName="latitude" type="number" step="any" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="4.7110">
+            @if (showError('latitude', 'required')) { <p class="text-red-500 text-xs mt-1">La latitud es obligatoria.</p> }
+            @if (showError('latitude', 'min') || showError('latitude', 'max')) { <p class="text-red-500 text-xs mt-1">Debe estar entre -90 y 90.</p> }
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Longitud</label>
             <input formControlName="longitude" type="number" step="any" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="-74.0721">
+            @if (showError('longitude', 'required')) { <p class="text-red-500 text-xs mt-1">La longitud es obligatoria.</p> }
+            @if (showError('longitude', 'min') || showError('longitude', 'max')) { <p class="text-red-500 text-xs mt-1">Debe estar entre -180 y 180.</p> }
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Barrio</label>
-            <select formControlName="neighborhoodId" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-              <option value="">Seleccione barrio</option>
-              <option value="1">Ciudad Bolívar</option>
-              <option value="2">Usaquén</option>
-              <option value="3">Chapinero</option>
-              <option value="4">Santa Fe</option>
-              <option value="5">San Cristóbal</option>
-              <option value="6">Usme</option>
-              <option value="7">Tunjuelito</option>
-              <option value="8">Bosa</option>
-              <option value="9">Kennedy</option>
-              <option value="10">Fontibón</option>
-              <option value="11">Engativá</option>
-              <option value="12">Suba</option>
+            <select formControlName="neighborhoodId" [disabled]="isLoadingNeighborhoods" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              <option value="">{{ isLoadingNeighborhoods ? 'Cargando barrios...' : 'Seleccione barrio' }}</option>
+              @for (n of neighborhoods; track n.neighborhoodId) {
+                <option [value]="n.neighborhoodId">{{ n.name }}</option>
+              }
             </select>
+            @if (showError('neighborhoodId', 'required')) { <p class="text-red-500 text-xs mt-1">Seleccione un barrio.</p> }
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
@@ -132,6 +132,7 @@
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Hora cierre</label>
             <input formControlName="closingTime" type="time" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            @if (ecoForm.touched && ecoForm.hasError('invalidTimeRange')) { <p class="text-red-500 text-xs mt-1">La hora de cierre debe ser posterior a la de apertura.</p> }
           </div>
         </div>
 
@@ -152,6 +153,7 @@
               </button>
             }
           </div>
+          @if (showError('residueTypes', 'required')) { <p class="text-red-500 text-xs mt-1">Seleccione al menos un tipo de residuo.</p> }
         </div>
       </form>
 

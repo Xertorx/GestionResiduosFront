@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, NgZone, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -25,6 +25,11 @@ export interface GoogleRegisterRequest {
   phoneNumber: string;
 }
 
+interface Neighborhood {
+  neighborhoodId: number;
+  name: string;
+}
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -32,7 +37,8 @@ export interface GoogleRegisterRequest {
   templateUrl: './register.html',
   styleUrl: './register.scss'
 })
-export class Register implements OnInit {
+export class Register implements OnInit, AfterViewInit, OnDestroy {
+  private googleInterval: any;
 
   form: FormGroup;
   googleForm: FormGroup;
@@ -42,6 +48,8 @@ export class Register implements OnInit {
   showErrorModal: boolean = false;
   googleUser: any = null;
   showCompleteForm: boolean = false;
+  neighborhoods: Neighborhood[] = [];
+  isLoadingNeighborhoods = false;
 
   constructor(
     private router: Router,
@@ -78,28 +86,37 @@ export class Register implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loadNeighborhoods();
+  }
+
+  ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.initGoogleSDK();
     }
   }
 
-  initGoogleSDK() {
-    const waitForGoogle = setInterval(() => {
-      if (typeof (window as any).google !== 'undefined') {
-        clearInterval(waitForGoogle);
+  ngOnDestroy() {
+    if (this.googleInterval) {
+      clearInterval(this.googleInterval);
+    }
+  }
 
-        if (!(window as any).__gsi_initialized) {
-          google.accounts.id.initialize({
-            client_id: environment.googleClientId,
-            callback: (response: any) => {
-              this.ngZone.run(async () => {
-                await this.handleGoogleCallback(response);
-              });
-            }
-          });
-          (window as any).__gsi_initialized = true;
-        }
+  initGoogleSDK() {
+    this.googleInterval = setInterval(() => {
+      if (typeof (window as any).google !== 'undefined') {
+        clearInterval(this.googleInterval);
+
+        google.accounts.id.initialize({
+          client_id: environment.googleClientId,
+          use_fedcm_for_prompt: false,
+          use_fedcm_for_button: false,
+          callback: (response: any) => {
+            this.ngZone.run(async () => {
+              await this.handleGoogleCallback(response);
+            });
+          }
+        });
 
         google.accounts.id.renderButton(
           document.getElementById('google-btn'),
@@ -191,6 +208,20 @@ export class Register implements OnInit {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmPassword')?.value;
     return pass === confirm ? null : { passwordsMismatch: true };
+  }
+
+  loadNeighborhoods(): void {
+    this.isLoadingNeighborhoods = true;
+    this.api.getNeighboordHoods(1, 1).subscribe({
+      next: (response: any) => {
+        this.neighborhoods = Array.isArray(response) ? response : (response?.content || []);
+        this.isLoadingNeighborhoods = false;
+      },
+      error: (error) => {
+        console.error('Error al obtener los barrios:', error);
+        this.isLoadingNeighborhoods = false;
+      }
+    });
   }
 
   get f() { return this.form.controls; }

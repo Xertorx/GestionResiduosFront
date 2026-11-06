@@ -26,6 +26,10 @@ export class ApiService {
   registerUser(payload: any): Observable<any> {
     return this.http.post('/auth/register/user', payload);
   }
+   // -- NeighboordHoods --
+  getNeighboordHoods(cityId: any = 1, districtId: any = 1): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/geography/neighborhoods`, { params: { cityId, districtId } });
+  }
 
   registerGoogle(payload: any): Observable<any> {
     return this.http.post('/auth/register/google', payload);
@@ -290,4 +294,6 @@ export class ApiService {
   getMyUnlockedAchievements(): Observable<any[]> {
     return this.http.get<any[]>(`${environment.apiUrl}/achievements/me/unlocked`, { headers: this.authHeaders() });
   }
+
+ 
 }

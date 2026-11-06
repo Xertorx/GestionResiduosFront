@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "set-env": "node scripts/set-env.mjs",
+    "prestart": "node scripts/set-env.mjs",
     "start": "ng serve --proxy-config proxy.conf.json",
+    "prebuild": "node scripts/set-env.mjs --prod",
     "build": "ng build",
+    "prewatch": "node scripts/set-env.mjs",
     "watch": "ng build --watch --configuration development",
+    "pretest": "node scripts/set-env.mjs",
     "test": "ng test",
     "serve:ssr:GestionResiduos": "node dist/GestionResiduos/server/server.mjs"
   },

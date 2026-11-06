@@ -1,7 +1,8 @@
 <div class="min-h-screen flex">
 
   <!-- Panel izquierdo: branding -->
-  <div class="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-emerald-700 to-teal-600 relative overflow-hidden flex-col items-center justify-start pt-16 p-12 flex-shrink-0 text-center">
+  <div
+    class="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-emerald-700 to-teal-600 relative overflow-hidden flex-col items-center justify-start pt-16 p-12 flex-shrink-0 text-center">
     <div class="absolute -top-20 -left-20 w-80 h-80 bg-white/5 rounded-full"></div>
     <div class="absolute -bottom-16 -right-16 w-96 h-96 bg-white/5 rounded-full"></div>
 
@@ -77,10 +78,10 @@
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                   placeholder="Nombres">
                 @if (f['names'].touched && f['names'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">El nombre es obligatorio.</p>
+                <p class="text-red-500 text-xs mt-1">El nombre es obligatorio.</p>
                 }
                 @if (f['names'].touched && f['names'].errors?.['minlength']) {
-                  <p class="text-red-500 text-xs mt-1">Mínimo 2 caracteres.</p>
+                <p class="text-red-500 text-xs mt-1">Mínimo 2 caracteres.</p>
                 }
               </div>
 
@@ -90,10 +91,10 @@
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                   placeholder="Apellidos">
                 @if (f['lastName'].touched && f['lastName'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">El apellido es obligatorio.</p>
+                <p class="text-red-500 text-xs mt-1">El apellido es obligatorio.</p>
                 }
                 @if (f['lastName'].touched && f['lastName'].errors?.['minlength']) {
-                  <p class="text-red-500 text-xs mt-1">Mínimo 2 caracteres.</p>
+                <p class="text-red-500 text-xs mt-1">Mínimo 2 caracteres.</p>
                 }
               </div>
 
@@ -108,7 +109,7 @@
                   <option value="PA">Pasaporte</option>
                 </select>
                 @if (f['documentType'].touched && f['documentType'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">Seleccione un tipo de documento.</p>
+                <p class="text-red-500 text-xs mt-1">Seleccione un tipo de documento.</p>
                 }
               </div>
 
@@ -118,10 +119,10 @@
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                   placeholder="Número de documento">
                 @if (f['documentNumber'].touched && f['documentNumber'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">El número de documento es obligatorio.</p>
+                <p class="text-red-500 text-xs mt-1">El número de documento es obligatorio.</p>
                 }
                 @if (f['documentNumber'].touched && f['documentNumber'].errors?.['pattern']) {
-                  <p class="text-red-500 text-xs mt-1">Solo se permiten números.</p>
+                <p class="text-red-500 text-xs mt-1">Solo se permiten números.</p>
                 }
               </div>
 
@@ -130,7 +131,7 @@
                 <input formControlName="birthDate" type="date"
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
                 @if (f['birthDate'].touched && f['birthDate'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">La fecha de nacimiento es obligatoria.</p>
+                <p class="text-red-500 text-xs mt-1">La fecha de nacimiento es obligatoria.</p>
                 }
               </div>
 
@@ -140,10 +141,10 @@
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                   placeholder="Número de teléfono">
                 @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">El teléfono es obligatorio.</p>
+                <p class="text-red-500 text-xs mt-1">El teléfono es obligatorio.</p>
                 }
                 @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['pattern']) {
-                  <p class="text-red-500 text-xs mt-1">El teléfono debe tener 10 dígitos.</p>
+                <p class="text-red-500 text-xs mt-1">El teléfono debe tener 10 dígitos.</p>
                 }
               </div>
 
@@ -163,57 +164,25 @@
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1.5">Localidad</label>
-                <select class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
+                <select
+                  class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
                   <option value="">Seleccione localidad</option>
                   <option value="Ciudad Bolívar" selected>Ciudad Bolívar</option>
-                  <option value="Usaquén">Usaquén</option>
-                  <option value="Chapinero">Chapinero</option>
-                  <option value="Santa Fe">Santa Fe</option>
-                  <option value="San Cristóbal">San Cristóbal</option>
-                  <option value="Usme">Usme</option>
-                  <option value="Tunjuelito">Tunjuelito</option>
-                  <option value="Bosa">Bosa</option>
-                  <option value="Kennedy">Kennedy</option>
-                  <option value="Fontibón">Fontibón</option>
-                  <option value="Engativá">Engativá</option>
-                  <option value="Suba">Suba</option>
-                  <option value="Barrios Unidos">Barrios Unidos</option>
-                  <option value="Teusaquillo">Teusaquillo</option>
-                  <option value="Los Mártires">Los Mártires</option>
-                  <option value="Antonio Nariño">Antonio Nariño</option>
-                  <option value="Puente Aranda">Puente Aranda</option>
-                  <option value="La Candelaria">La Candelaria</option>
-                  <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
                 </select>
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1.5">Barrio</label>
-                <select formControlName="neighborhoodId"
+                <select formControlName="neighborhoodId" [disabled]="isLoadingNeighborhoods"
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
-                  <option value="">Seleccione barrio</option>
-                  <option value="1">Ciudad Bolívar</option>
-                  <option value="2">Usaquén</option>
-                  <option value="3">Chapinero</option>
-                  <option value="4">Santa Fe</option>
-                  <option value="5">San Cristóbal</option>
-                  <option value="6">Usme</option>
-                  <option value="7">Tunjuelito</option>
-                  <option value="8">Bosa</option>
-                  <option value="9">Kennedy</option>
-                  <option value="10">Fontibón</option>
-                  <option value="11">Engativá</option>
-                  <option value="12">Suba</option>
-                  <option value="13">Barrios Unidos</option>
-                  <option value="14">Teusaquillo</option>
-                  <option value="15">Los Mártires</option>
-                  <option value="16">Antonio Nariño</option>
-                  <option value="17">Puente Aranda</option>
-                  <option value="18">La Candelaria</option>
-                  <option value="19">Rafael Uribe Uribe</option>
+                  <option value="">{{ isLoadingNeighborhoods ? 'Cargando barrios...' : 'Seleccione un barrio' }}
+                  </option>
+                  @for (neighborhood of neighborhoods; track neighborhood.neighborhoodId) {
+                  <option [value]="neighborhood.neighborhoodId">{{ neighborhood.name }}</option>
+                  }
                 </select>
                 @if (f['neighborhoodId'].touched && f['neighborhoodId'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">Seleccione un barrio.</p>
+                <p class="text-red-500 text-xs mt-1">Seleccione un barrio.</p>
                 }
               </div>
 
@@ -223,7 +192,7 @@
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                   placeholder="Dirección completa">
                 @if (f['address'].touched && f['address'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">La dirección es obligatoria.</p>
+                <p class="text-red-500 text-xs mt-1">La dirección es obligatoria.</p>
                 }
               </div>
 
@@ -241,10 +210,10 @@
                   class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                   placeholder="tu@correo.com">
                 @if (f['email'].touched && f['email'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">El correo es obligatorio.</p>
+                <p class="text-red-500 text-xs mt-1">El correo es obligatorio.</p>
                 }
                 @if (f['email'].touched && f['email'].errors?.['email']) {
-                  <p class="text-red-500 text-xs mt-1">Formato de correo inválido.</p>
+                <p class="text-red-500 text-xs mt-1">Formato de correo inválido.</p>
                 }
               </div>
 
@@ -260,13 +229,13 @@
                   </button>
                 </div>
                 @if (f['password'].touched && f['password'].errors?.['required']) {
-                  <p class="text-red-500 text-xs mt-1">La contraseña es obligatoria.</p>
+                <p class="text-red-500 text-xs mt-1">La contraseña es obligatoria.</p>
                 }
                 @if (f['password'].touched && f['password'].errors?.['minlength']) {
-                  <p class="text-red-500 text-xs mt-1">Mínimo 8 caracteres.</p>
+                <p class="text-red-500 text-xs mt-1">Mínimo 8 caracteres.</p>
                 }
                 @if (f['password'].touched && f['password'].errors?.['pattern']) {
-                  <p class="text-red-500 text-xs mt-1">Debe incluir mayúscula, número y carácter especial.</p>
+                <p class="text-red-500 text-xs mt-1">Debe incluir mayúscula, número y carácter especial.</p>
                 }
               </div>
 
@@ -282,7 +251,7 @@
                   </button>
                 </div>
                 @if (f['confirmPassword'].touched && form.errors?.['passwordsMismatch']) {
-                  <p class="text-red-500 text-xs mt-1">Las contraseñas no coinciden.</p>
+                <p class="text-red-500 text-xs mt-1">Las contraseñas no coinciden.</p>
                 }
               </div>
 
@@ -294,11 +263,12 @@
             <input formControlName="terminos" id="terminos" type="checkbox"
               class="mt-0.5 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded flex-shrink-0">
             <label for="terminos" class="text-sm text-gray-600">
-              Acepto los <a href="#" class="text-emerald-600 font-medium hover:text-emerald-500">Términos y Condiciones</a> y la política de privacidad
+              Acepto los <a href="#" class="text-emerald-600 font-medium hover:text-emerald-500">Términos y
+                Condiciones</a> y la política de privacidad
             </label>
           </div>
           @if (f['terminos'].touched && f['terminos'].errors?.['required']) {
-            <p class="text-red-500 text-xs">Debes aceptar los términos y condiciones.</p>
+          <p class="text-red-500 text-xs">Debes aceptar los términos y condiciones.</p>
           }
 
           <!-- Botón submit -->
@@ -309,8 +279,11 @@
 
           <!-- Separador Google -->
           <div class="relative">
-            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
-            <div class="relative flex justify-center text-xs"><span class="px-3 bg-gray-50 text-gray-400">O regístrate con Google</span></div>
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-xs"><span class="px-3 bg-gray-50 text-gray-400">O regístrate
+                con Google</span></div>
           </div>
 
           <div class="flex justify-center">
@@ -332,147 +305,134 @@
 <!-- Modal error -->
 @if (showErrorModal) {
 <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-8 relative">
-        <div class="flex flex-col items-center mb-6">
-            <div class="bg-red-100 rounded-full p-4 mb-4">
-                <lucide-icon name="circle-alert" class="h-10 w-10 text-red-500"></lucide-icon>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800">Error</h3>
-            <p class="text-sm text-gray-600 mt-2 text-center">{{ errorMessage }}</p>
-        </div>
-        <button (click)="showErrorModal = false" type="button"
-            class="w-full bg-emerald-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-emerald-700 transition">
-            Entendido
-        </button>
+  <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-8 relative">
+    <div class="flex flex-col items-center mb-6">
+      <div class="bg-red-100 rounded-full p-4 mb-4">
+        <lucide-icon name="circle-alert" class="h-10 w-10 text-red-500"></lucide-icon>
+      </div>
+      <h3 class="text-xl font-bold text-gray-800">Error</h3>
+      <p class="text-sm text-gray-600 mt-2 text-center">{{ errorMessage }}</p>
     </div>
+    <button (click)="showErrorModal = false" type="button"
+      class="w-full bg-emerald-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-emerald-700 transition">
+      Entendido
+    </button>
+  </div>
 </div>
 }
 
 <!-- Modal Google -->
 @if (showCompleteForm && googleUser) {
 <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-8">
-        <div class="flex items-center gap-4 mb-6">
-            <img [src]="googleUser.photoUrl" (error)="googleUser.photoUrl = 'img/default-avatar.png'"
-                class="h-14 w-14 rounded-full object-cover border-2 border-emerald-500" alt="">
-            <div>
-                <h3 class="text-lg font-bold text-gray-800">¡Hola, {{ googleUser.firstName }}!</h3>
-                <p class="text-sm text-gray-500">Completa tu registro con algunos datos adicionales.</p>
-            </div>
+  <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-8">
+    <div class="flex items-center gap-4 mb-6">
+      <img [src]="googleUser.photoUrl" (error)="googleUser.photoUrl = 'img/default-avatar.png'"
+        class="h-14 w-14 rounded-full object-cover border-2 border-emerald-500" alt="">
+      <div>
+        <h3 class="text-lg font-bold text-gray-800">¡Hola, {{ googleUser.firstName }}!</h3>
+        <p class="text-sm text-gray-500">Completa tu registro con algunos datos adicionales.</p>
+      </div>
+    </div>
+
+    <form [formGroup]="googleForm" class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Documento</label>
+          <select formControlName="documentType"
+            class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none">
+            <option value="">Seleccione</option>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="TI">Tarjeta de Identidad</option>
+            <option value="CE">Cédula de Extranjería</option>
+            <option value="PA">Pasaporte</option>
+          </select>
+          @if (googleForm.get('documentType')?.touched &&
+          googleForm.get('documentType')?.errors?.['required']) {
+          <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
+          }
         </div>
 
-        <form [formGroup]="googleForm" class="space-y-4">
-            <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Número de Documento</label>
+          <input formControlName="documentNumber" type="text"
+            class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none"
+            placeholder="Número de documento">
+          @if (googleForm.get('documentNumber')?.touched &&
+          googleForm.get('documentNumber')?.errors?.['required']) {
+          <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
+          }
+          @if (googleForm.get('documentNumber')?.touched &&
+          googleForm.get('documentNumber')?.errors?.['pattern']) {
+          <p class="text-red-500 text-xs mt-1">Solo números.</p>
+          }
+        </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Documento</label>
-                    <select formControlName="documentType"
-                        class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none">
-                        <option value="">Seleccione</option>
-                        <option value="CC">Cédula de Ciudadanía</option>
-                        <option value="TI">Tarjeta de Identidad</option>
-                        <option value="CE">Cédula de Extranjería</option>
-                        <option value="PA">Pasaporte</option>
-                    </select>
-                    @if (googleForm.get('documentType')?.touched &&
-                    googleForm.get('documentType')?.errors?.['required']) {
-                    <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
-                    }
-                </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de Nacimiento</label>
+          <input formControlName="birthDate" type="date"
+            class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none">
+          @if (googleForm.get('birthDate')?.touched && googleForm.get('birthDate')?.errors?.['required']) {
+          <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
+          }
+        </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Número de Documento</label>
-                    <input formControlName="documentNumber" type="text"
-                        class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none"
-                        placeholder="Número de documento">
-                    @if (googleForm.get('documentNumber')?.touched &&
-                    googleForm.get('documentNumber')?.errors?.['required']) {
-                    <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
-                    }
-                    @if (googleForm.get('documentNumber')?.touched &&
-                    googleForm.get('documentNumber')?.errors?.['pattern']) {
-                    <p class="text-red-500 text-xs mt-1">Solo números.</p>
-                    }
-                </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+          <input formControlName="phoneNumber" type="text"
+            class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none"
+            placeholder="10 dígitos">
+          @if (googleForm.get('phoneNumber')?.touched && googleForm.get('phoneNumber')?.errors?.['required'])
+          {
+          <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
+          }
+          @if (googleForm.get('phoneNumber')?.touched && googleForm.get('phoneNumber')?.errors?.['pattern']) {
+          <p class="text-red-500 text-xs mt-1">Debe tener 10 dígitos.</p>
+          }
+        </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de Nacimiento</label>
-                    <input formControlName="birthDate" type="date"
-                        class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none">
-                    @if (googleForm.get('birthDate')?.touched && googleForm.get('birthDate')?.errors?.['required']) {
-                    <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
-                    }
-                </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Barrio</label>
+          <select formControlName="neighborhoodId" [disabled]="isLoadingNeighborhoods"
+            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
+            <option value="">{{ isLoadingNeighborhoods ? 'Cargando barrios...' : 'Seleccione un barrio' }}</option>
+            @for (neighborhood of neighborhoods; track neighborhood.neighborhoodId) {
+            <option [value]="neighborhood.neighborhoodId">{{ neighborhood.name }}</option>
+            }
+          </select>
+          @if (f['neighborhoodId'].touched && f['neighborhoodId'].errors?.['required']) {
+          <p class="text-red-500 text-xs mt-1">Seleccione un barrio.</p>
+          }
+          @if (googleForm.get('neighborhoodId')?.touched &&
+          googleForm.get('neighborhoodId')?.errors?.['required']) {
+          <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
+          }
+        </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
-                    <input formControlName="phoneNumber" type="text"
-                        class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none"
-                        placeholder="10 dígitos">
-                    @if (googleForm.get('phoneNumber')?.touched && googleForm.get('phoneNumber')?.errors?.['required'])
-                    {
-                    <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
-                    }
-                    @if (googleForm.get('phoneNumber')?.touched && googleForm.get('phoneNumber')?.errors?.['pattern']) {
-                    <p class="text-red-500 text-xs mt-1">Debe tener 10 dígitos.</p>
-                    }
-                </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
+          <input formControlName="address" type="text"
+            class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none"
+            placeholder="Dirección completa">
+          @if (googleForm.get('address')?.touched && googleForm.get('address')?.errors?.['required']) {
+          <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
+          }
+        </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Barrio</label>
-                    <select formControlName="neighborhoodId"
-                        class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none">
-                        <option value="">Seleccione barrio</option>
-                        <option value="1">Ciudad Bolívar</option>
-                        <option value="2">Usaquén</option>
-                        <option value="3">Chapinero</option>
-                        <option value="4">Santa Fe</option>
-                        <option value="5">San Cristóbal</option>
-                        <option value="6">Usme</option>
-                        <option value="7">Tunjuelito</option>
-                        <option value="8">Bosa</option>
-                        <option value="9">Kennedy</option>
-                        <option value="10">Fontibón</option>
-                        <option value="11">Engativá</option>
-                        <option value="12">Suba</option>
-                        <option value="13">Barrios Unidos</option>
-                        <option value="14">Teusaquillo</option>
-                        <option value="15">Los Mártires</option>
-                        <option value="16">Antonio Nariño</option>
-                        <option value="17">Puente Aranda</option>
-                        <option value="18">La Candelaria</option>
-                        <option value="19">Rafael Uribe Uribe</option>
-                    </select>
-                    @if (googleForm.get('neighborhoodId')?.touched &&
-                    googleForm.get('neighborhoodId')?.errors?.['required']) {
-                    <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
-                    }
-                </div>
+      </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
-                    <input formControlName="address" type="text"
-                        class="form-input w-full rounded-lg border px-3 py-2 text-gray-900 focus:outline-none"
-                        placeholder="Dirección completa">
-                    @if (googleForm.get('address')?.touched && googleForm.get('address')?.errors?.['required']) {
-                    <p class="text-red-500 text-xs mt-1">Obligatorio.</p>
-                    }
-                </div>
+      <div class="flex gap-3 mt-6">
+        <button (click)="showCompleteForm = false" type="button"
+          class="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition">
+          Cancelar
+        </button>
+        <button (click)="completeGoogleRegister()" type="button" [disabled]="googleForm.invalid"
+          class="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-emerald-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Completar registro
+        </button>
+      </div>
 
-            </div>
-
-            <div class="flex gap-3 mt-6">
-                <button (click)="showCompleteForm = false" type="button"
-                    class="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition">
-                    Cancelar
-                </button>
-                <button (click)="completeGoogleRegister()" type="button" [disabled]="googleForm.invalid"
-                    class="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-emerald-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
-                    Completar registro
-                </button>
-            </div>
-
-        </form>
-    </div>
+    </form>
+  </div>
 </div>
 }

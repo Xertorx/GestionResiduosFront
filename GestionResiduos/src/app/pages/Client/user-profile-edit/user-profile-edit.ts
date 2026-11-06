@@ -6,6 +6,12 @@ import { AuthStateService } from '../../../services/auth-state.service';
 import { LoadingService } from '../../../services/loading.service';
 import { ApiService } from '../../../services/api.service';
 
+
+interface Neighborhood {
+  neighborhoodId: number;
+  name: string;
+}
+
 @Component({
   selector: 'app-user-profile-edit',
   standalone: true,
@@ -13,6 +19,7 @@ import { ApiService } from '../../../services/api.service';
   templateUrl: './user-profile-edit.html',
   styleUrl: './user-profile-edit.scss'
 })
+
 export class UserProfileEdit implements OnInit {
 
   profileForm!: FormGroup;
@@ -23,6 +30,8 @@ export class UserProfileEdit implements OnInit {
   preview: string | null = null;
   currentPhoto: string | null = null;
   selectedFile: File | null = null;
+  isLoadingNeighborhoods = false;
+  neighborhoods: Neighborhood[] = [];
 
   showConfirmModal = false;
   showSuccessModal = false;
@@ -53,6 +62,20 @@ export class UserProfileEdit implements OnInit {
   }
 
   get f() { return this.profileForm.controls; }
+
+  loadNeighborhoods(): void {
+    this.isLoadingNeighborhoods = true;
+    this.api.getNeighboordHoods(1, 1).subscribe({
+      next: (response: any) => {
+        this.neighborhoods = Array.isArray(response) ? response : (response?.content || []);
+        this.isLoadingNeighborhoods = false;
+      },
+      error: (error) => {
+        console.error('Error al obtener los barrios:', error);
+        this.isLoadingNeighborhoods = false;
+      }
+    });
+  }
 
   loadProfile(): void {
     this.isLoading = true;
