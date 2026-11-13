@@ -31,6 +31,10 @@ export class ApiService {
     return this.http.get<any[]>(`${environment.apiUrl}/geography/neighborhoods`, { params: { cityId, districtId } });
   }
 
+  getNeighborhoodLocation(id: number = 1): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/geography/neighborhoods/${id}/location`);
+  }
+
   registerGoogle(payload: any): Observable<any> {
     return this.http.post('/auth/register/google', payload);
   }
